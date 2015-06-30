@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 6.0.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace.BusinessTransactionRowCounter" name="Business Transaction Row Counter">
+    <information>
+      <category value="" />
+      <description value="This plugin counts the number of rows displayed in a Business Transaction table." />
+      <displayname value="Business Transaction Row Counter" />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="protocol" label="Protocol" type="list" description="HTTP Protocol (HTTP or HTTPS)" default="http">
+        <list>
+          <item value="http" />
+          <item value="https" />
+        </list>
+      </property>
+      <property key="httpPort" label="Port" type="long" description="HTTP Port to dynaTrace Server" default="8020" />
+      <property key="dashboardURL" label="Business Transaction Dashboard URL" type="string" description="Enter the path to the webpage to be monitored. Example: /rest/management/..." default="/rest/management/reports/create/..." multiline="false" />
+      <property key="username" label="Username" type="string" description="dynaTrace username to access dashboard" default="username" multiline="false" />
+      <property key="password" label="Password" type="password" description="dynaTrace password to access dashboard" default="" />
+      <property key="countChoice" label="Count Choice" type="list" description="My property description ..." default="count rows">
+        <list>
+          <item value="count rows" />
+          <item value="count unique rows" />
+          <item value="count instances" />
+        </list>
+      </property>
+      <property key="dashboardOption" label="dashboardOption" type="list" description="My property description ..." default="Chart">
+        <list>
+          <item value="Chart" />
+          <item value="Business Transaction" />
+        </list>
+      </property>
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.dynatrace.BusinessTransactionRowCounter.monitor" name="Business Transaction Row Counter Monitor">
+    <plugin configid="com.dynatrace.BusinessTransactionRowCounter" class="com.dynatrace.BT.Row.CounterMonitor" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.BusinessTransactionRowCounter.metricgroup1" name="Row Counter">
+    <metricgroup monitorid="com.dynatrace.BusinessTransactionRowCounter.monitor">
+      <metric defaultrate="purepath" name="Rows" unit="number" description="returns the number or rows in a Business Transaction or Chart table" />
+    </metricgroup>
+  </extension>
+</plugin>
+

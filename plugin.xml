@@ -5,7 +5,7 @@
   <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace.BusinessTransactionRowCounter" name="Business Transaction Row Counter">
     <information>
       <category value="" />
-      <description value="This plugin counts the number of rows displayed in a Business Transaction table." />
+      <description value="This plugin counts the number of rows displayed in a Business Transaction table or Chart table." />
       <displayname value="Business Transaction Row Counter" />
       <supportlevel value="unsupported" />
     </information>
@@ -16,22 +16,59 @@
           <item value="https" />
         </list>
       </property>
-      <property key="httpPort" label="Port" type="long" description="HTTP Port to dynaTrace Server" default="8020" />
-      <property key="dashboardURL" label="Business Transaction Dashboard URL" type="string" description="Enter the path to the webpage to be monitored. Example: /rest/management/..." default="/rest/management/reports/create/..." multiline="false" />
+      <property key="httpPort" label="Port" type="long" description="HTTP/HTTPS Port to dynaTrace Server" default="8020" />
       <property key="username" label="Username" type="string" description="dynaTrace username to access dashboard" default="username" multiline="false" />
       <property key="password" label="Password" type="password" description="dynaTrace password to access dashboard" default="" />
-      <property key="countChoice" label="Count Choice" type="list" description="My property description ..." default="count rows">
+      <property key="dashboardName" label="Dashboard Name" type="string" description="Please enter name of the dashboard (i.e. RowCounterDashboard)" default="" multiline="false" />
+      <property key="countChoice" label="Count Choice" type="list" description="Please select type of counter" default="count rows">
         <list>
           <item value="count rows" />
           <item value="count unique rows" />
           <item value="count instances" />
         </list>
       </property>
-      <property key="dashboardOption" label="dashboardOption" type="list" description="My property description ..." default="Chart">
+      <property key="dashboardOption" label="dashboardOption" type="list" description="What type of dashlet is the Dashboard displaying (Chart or Business Transaction)?" default="Chart">
         <list>
           <item value="Chart" />
           <item value="Business Transaction" />
         </list>
+      </property>
+      <property key="timeframeFilter" label="Timeframe Filter" type="list" description="Timeframe Filter (last x minutes/seconds)" default="10 Seconds">
+        <list>
+          <item value="10 Seconds" />
+          <item value="30 Seconds" />
+          <item value="60 Seconds" />
+          <item value="5 Minutes" />
+          <item value="15 Minutes" />
+          <item value="30 Minutes" />
+          <item value="60 Minutes" />
+          <item value="6 Hours" />
+          <item value="12 Hours" />
+          <item value="24 Hours" />
+          <item value="7 Days" />
+          <item value="30 Days" />
+        </list>
+      </property>
+      <property key="filterBoolean" label="Additional Filters?" type="boolean" description="Add additional filters?" default="false" />
+      <property key="btBoolean" label="Filter by Business Transaction?" type="boolean" description="Filter by Business Transaction?" default="false">
+        <visibility>
+          <rule key="filterBoolean" value="true" />
+        </visibility>
+      </property>
+      <property key="btFilter" label="Business Transaction Name" type="string" description="Business Transaction Name to be used as a filter" default="" multiline="false">
+        <visibility>
+          <rule key="btBoolean" value="true" />
+        </visibility>
+      </property>
+      <property key="systemProfileBoolean" label="Filter by System Profile?" type="boolean" description="Filter the dashboard on a different System Profile than set on the dashbaord?" default="false">
+        <visibility>
+          <rule key="filterBoolean" value="true" />
+        </visibility>
+      </property>
+      <property key="systemProfileFilter" label="System Profile Name" type="string" description="System Profile Name to be used as a filter" default="" multiline="false">
+        <visibility>
+          <rule key="systemProfileBoolean" value="true" />
+        </visibility>
       </property>
     </configuration>
   </extension>
@@ -44,4 +81,3 @@
     </metricgroup>
   </extension>
 </plugin>
-

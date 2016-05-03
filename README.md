@@ -1,7 +1,6 @@
-# Business-Transaction-Row-Counter-Plugin
-Business Transaction Row Counter Plugin
+## Business-Transaction-Row-Counter-Plugin
 
-<img src="images\icon.png" alt="Business Transaction Row Counter Plugin"><br> 
+![images\icon.png](Business Transaction Row Counter Plugin)
 
 The Business Transaction Row Count plugin queries a Business Transaction Dashboard to return the number of rows/splittings in the table.  
 The plugin supports both HTTP and HTTPS.

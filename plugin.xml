@@ -60,7 +60,7 @@
           <rule key="btBoolean" value="true" />
         </visibility>
       </property>
-      <property key="systemProfileBoolean" label="Filter by System Profile?" type="boolean" description="Filter the dashboard on a different System Profile than set on the dashbaord?" default="false">
+      <property key="systemProfileBoolean" label="Filter by System Profile?" type="boolean" description="Filter the dashboard on a different System Profile than set on the dashboard?" default="false">
         <visibility>
           <rule key="filterBoolean" value="true" />
         </visibility>
